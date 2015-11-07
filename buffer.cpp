@@ -1,7 +1,8 @@
 #include "buffer.h"
 
-Buffer::Buffer()
+#include <memory>
+
+Buffer::Buffer(int width, int height)
 {
-
+    history.push_back(std::make_shared<Sprite>(width, height));
 }
-

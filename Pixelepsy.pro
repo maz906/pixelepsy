@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         pixelepsy.cpp \
-    buffer.cpp
+    buffer.cpp \
+    sprite.cpp \
+    frame.cpp
 
 HEADERS  += pixelepsy.h \
-    buffer.h
+    buffer.h \
+    sprite.h \
+    frame.h
 
 FORMS    += pixelepsy.ui
