@@ -28,6 +28,8 @@ public:
     Buffer() = delete;
 
     Buffer(int width, int height);
+
+    std::shared_ptr<Sprite> current();
 };
 
 #endif // BUFFER_H

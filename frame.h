@@ -15,6 +15,9 @@ private:
     std::vector<std::shared_ptr<QImage>> layers;
 public:
     Frame(int width, int height);
+    std::shared_ptr<QImage> getFirst() {
+        return layers.at(0);
+    }
 };
 
 #endif // FRAME_H

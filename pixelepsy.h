@@ -1,7 +1,11 @@
 #ifndef PIXELEPSY_H
 #define PIXELEPSY_H
 
+#include "buffer.h"
+#include "Sprite.h"
+
 #include <QMainWindow>
+#include <QGraphicsPixmapItem>
 
 namespace Ui {
 class Pixelepsy;
@@ -16,6 +20,10 @@ public:
     ~Pixelepsy();
 
 private:
+    Buffer* test;
+    QGraphicsScene* scene;
+    QGraphicsView* view;
+    QGraphicsPixmapItem* item;
     Ui::Pixelepsy *ui;
 };
 
