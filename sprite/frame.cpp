@@ -1,4 +1,4 @@
-#include "frame.h"
+#include "sprite/frame.h"
 
 Frame::Frame(int width, int height)
     : width(width)

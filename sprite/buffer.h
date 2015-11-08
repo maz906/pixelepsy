@@ -1,7 +1,7 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
-#include "sprite.h"
+#include "sprite/sprite.h"
 
 #include <deque>
 #include <functional>

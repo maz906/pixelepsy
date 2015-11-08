@@ -15,14 +15,21 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        pixelepsy.cpp \
-    buffer.cpp \
-    sprite.cpp \
-    frame.cpp
+    gui/viewer.cpp \
+    sprite/buffer.cpp \
+    sprite/frame.cpp \
+    sprite/sprite.cpp \
+    gui/pixelepsy.cpp \
+    gui/toolbox.cpp \
+    tools/tool.cpp
 
-HEADERS  += pixelepsy.h \
-    buffer.h \
-    sprite.h \
-    frame.h
+HEADERS  += \
+    gui/viewer.h \
+    sprite/buffer.h \
+    sprite/frame.h \
+    sprite/sprite.h \
+    gui/pixelepsy.h \
+    gui/toolbox.h \
+    tools/tool.h
 
 FORMS    += pixelepsy.ui

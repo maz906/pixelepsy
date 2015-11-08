@@ -1,4 +1,4 @@
-#include "buffer.h"
+#include "sprite/buffer.h"
 
 #include <memory>
 

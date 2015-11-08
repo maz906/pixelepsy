@@ -1,7 +1,7 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "frame.h"
+#include "sprite/frame.h"
 
 #include <vector>
 

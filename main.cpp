@@ -1,4 +1,4 @@
-#include "pixelepsy.h"
+#include "gui/pixelepsy.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
