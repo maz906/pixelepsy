@@ -6,23 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>403</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Pixelepsy</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>-9</y>
+      <width>391</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
-     <height>21</height>
+     <width>403</width>
+     <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPixelepsy">
+    <property name="title">
+     <string>Pixelepsy</string>
+    </property>
+   </widget>
+   <addaction name="menuPixelepsy"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
