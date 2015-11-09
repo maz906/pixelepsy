@@ -1,2 +1,2 @@
 # pixelepsy
-![CutePhoto](http://imgur.com/fbA75On)
+![markdown-preview](http://imgur.com/fbA75On)
