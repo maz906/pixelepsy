@@ -1,10 +1,18 @@
 #include "gui/viewer.h"
 
-Viewer::Viewer(QWidget *parent) : QWidget(parent)
+#include <QGraphicsPixmapItem>
+#include <QGridLayout>
+
+Viewer::Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent)
+    : QWidget(parent)
 {
-    //intended to have a graphics view, something like this
-    /*this->ui->graphicsView->setScene(new QGraphicsScene);
-    this->ui->graphicsView->scene()->addItem(new QGraphicsPixmapItem(QPixmap::fromImage(temp)));
-    this->ui->graphicsView->show();*/
+    frame = layer = 0;
+    this->buffer = buffer;
+    view.setScene(new QGraphicsScene);
+    view.scene()->addItem(new QGraphicsPixmapItem(QPixmap::fromImage((this->buffer.get())->get(frame, layer))));
+    this->setLayout(new QGridLayout);
+    view.show();
+
 }
+
 

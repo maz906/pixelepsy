@@ -11,6 +11,7 @@
 
 #include <QObject>
 #include <QPoint>
+#include <QImage>
 
 class Buffer : QObject
 {
@@ -29,6 +30,7 @@ public:
 
     Buffer(int width, int height);
 
+    QImage get(int frame, int layer);
     std::shared_ptr<Sprite> current();
 };
 

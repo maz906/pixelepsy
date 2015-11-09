@@ -13,13 +13,8 @@ class Sprite
     std::vector<Frame> frames;
 public:
     Sprite() = delete;
-
     Sprite(int width, int height);
-
-    // XXX Test don't use
-    QImage getFirst() {
-        return *frames.at(0).getFirst();
-    }
+    Frame getFrame(int frame);
 };
 
 #endif // SPRITE_H

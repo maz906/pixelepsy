@@ -14,7 +14,7 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     , test(new Buffer(128, 128))
     , mdiArea(new QMdiArea)
 {
-    QImage temp = test->current().get()->getFirst();
+    QImage temp = test->get(0,0);
     temp.fill(QColor(255, 0, 255, 255));
     //essential, do not remove
     this->ui->setupUi(this);
