@@ -1,2 +1,2 @@
 # pixelepsy
-[CutePhoto](http://imgur.com/fbA75On)
+![CutePhoto](http://imgur.com/fbA75On)
