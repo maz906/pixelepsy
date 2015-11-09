@@ -27,3 +27,8 @@ Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent){
     }
 }
 
+void Toolbox::toolChangedSlot(Tool &tool, Tool::Operation oper) {
+    //TODO: fill this out
+    int x = 2 + 2;
+}
+

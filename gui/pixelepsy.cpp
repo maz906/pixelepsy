@@ -26,8 +26,8 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     tools->setGeometry(QRect(100, 100, 100, 100));
     tools->setWindowTitle("OMG");
     mdiArea->addSubWindow(tools);
-    mdiArea->setLayout(new QHBoxLayout(mdiArea));
-    mdiArea->layout()->addWidget(tools);
+    //mdiArea->setLayout(new QHBoxLayout(mdiArea));
+    //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     tools->show();
 }

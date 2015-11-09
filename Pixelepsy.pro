@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     sprite/sprite.cpp \
     gui/pixelepsy.cpp \
     gui/toolbox.cpp \
-    tools/tool.cpp \
     tools/colorpicker.cpp
 
 HEADERS  += \

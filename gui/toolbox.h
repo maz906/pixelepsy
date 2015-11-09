@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 
-#include <tools/tool.h>
+#include "tools/tool.h"
 #include "sprite/buffer.h"
 
 class Toolbox : public QWidget
@@ -20,10 +20,11 @@ public:
     explicit Toolbox(Toolkit tools, QWidget *parent = 0, int cols = 1);
 
 signals:
-    void pickToolSignal(Tool tool);
+    //should take in a Tool
+    void pickToolSignal(Tool::Operation tool);
 
 public slots:
-    void toolChangedSlot(Tool::Operation oper);
+    void toolChangedSlot(Tool& tool, Tool::Operation oper);
 };
 
 #endif // TOOLBOX_H
