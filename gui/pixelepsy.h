@@ -9,7 +9,7 @@
 #include <QGraphicsView>
 #include <QMdiArea>
 #include <QFileDialog>
-
+#include <QInputDialog>
 namespace Ui {
 class Pixelepsy;
 }

@@ -70,4 +70,19 @@ void Pixelepsy::on_actionSave_As_triggered()
 void Pixelepsy::on_actionNew_triggered()
 {
 
+    bool state;
+    QString userInputDimension = QInputDialog::getText(this, tr("Dimension test"),
+                                         tr("Your dimension here"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &state);
+
+
+
 }
+
+
+
+
+
+
+
+
