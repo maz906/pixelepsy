@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QGraphicsView>
 #include <QScrollArea>
-
+#include <QGraphicsPixmapItem>
 #include <memory>
 #include "sprite/buffer.h"
 
