@@ -14,6 +14,8 @@ class Viewer : public QWidget
 private:
     std::shared_ptr<Buffer> buffer;
     QGraphicsView view;
+    QGraphicsScene scene;
+    QGraphicsPixmapItem item;
     QScrollArea scoller;
     int frame;
     int layer;
