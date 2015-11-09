@@ -38,36 +38,3 @@ Pixelepsy::~Pixelepsy()
     delete ui;
 }
 
-/*
- * Menu Bar - Open Button
- */
-void Pixelepsy::on_actionOpen_triggered()
-{
-    // Opens new file - Set to automatically go to root
-    QString fileName = QFileDialog::getOpenFileName(this, tr("TEsting"), "/", tr("fucking files (*.fuck)"));
-
-}
-
-/*
- * Menu Bar - Save Button
- */
-void Pixelepsy::on_actionSave_triggered()
-{
-
-}
-
-/*
- * Menu Bar - Save As Button
- */
-void Pixelepsy::on_actionSave_As_triggered()
-{
-
-}
-
-/*
- * Menu Bar - New Button
- */
-void Pixelepsy::on_actionNew_triggered()
-{
-
-}

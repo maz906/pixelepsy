@@ -8,7 +8,6 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsView>
 #include <QMdiArea>
-#include <QFileDialog>
 
 namespace Ui {
 class Pixelepsy;
@@ -26,14 +25,6 @@ private:
     Ui::Pixelepsy *ui;
     Buffer* test;
     QMdiArea* mdiArea;
-    QAction* actionNew;
-    QFileDialog* fileDialog;
-
-private slots:
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
-    void on_actionSave_As_triggered();
-    void on_actionNew_triggered();
 };
 
 #endif // PIXELEPSY_H
