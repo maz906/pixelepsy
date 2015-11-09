@@ -38,3 +38,49 @@ Pixelepsy::~Pixelepsy()
     delete ui;
 }
 
+/*
+ * Menu Bar - Open Button
+ */
+void Pixelepsy::on_actionOpen_triggered()
+{
+    // Opens new file - Set to automatically go to root
+    QString fileName = QFileDialog::getOpenFileName(this, tr("TEsting"), "/", tr("fucking files (*.fuck)"));
+
+}
+
+/*
+ * Menu Bar - Save Button
+ */
+void Pixelepsy::on_actionSave_triggered()
+{
+
+}
+
+/*
+ * Menu Bar - Save As Button
+ */
+void Pixelepsy::on_actionSave_As_triggered()
+{
+
+}
+
+/*
+ * Menu Bar - New Button
+ */
+void Pixelepsy::on_actionNew_triggered()
+{
+    // Will store the state whether user pressed Ok button or cancel.
+    bool userChoice;
+    QString userInputDimension = QInputDialog::getText(this, tr("Dimension test"),
+                                                       tr("Your dimension here"),
+                                                       QLineEdit::Normal,
+                                                       QDir::home().dirName(), &userChoice);
+
+    if(userChoice){
+        // Only if user doesn't press on cancel button.
+        QString userInputDimension2 = QInputDialog::getText(this, tr("Dimension test"),
+                                                            tr("Your dimension here"), QLineEdit::Normal,
+                                                            QDir::home().dirName(), &userChoice);
+    }
+
+}
