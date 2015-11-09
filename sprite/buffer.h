@@ -2,6 +2,7 @@
 #define BUFFER_H
 
 #include "sprite/sprite.h"
+#include "tools/tool.h"
 
 #include <deque>
 #include <functional>
@@ -18,12 +19,11 @@ class Buffer : QObject
 
 
 private:
-    typedef std::function<Sprite(Sprite, std::vector<QPoint>)> Operation;
 
     std::deque<std::shared_ptr<Sprite>> history;
     std::deque<std::shared_ptr<Sprite>> future;
 
-    std::shared_ptr<Operation> operation;
+    std::shared_ptr<Tool::Operation> operation;
 public:
     Buffer() = delete;
 

@@ -22,6 +22,7 @@ Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent){
             col = 0;
             row++;
         }
+        //(*it).get() is a Tool, should be ToolButton
         layout->addItem((*it).get(), row, col);
     }
 }
