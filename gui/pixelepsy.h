@@ -10,6 +10,9 @@
 #include <QMdiArea>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QShortcut>
+#include <QKeySequence>
+
 namespace Ui {
 class Pixelepsy;
 }
@@ -28,6 +31,9 @@ private:
     QMdiArea* mdiArea;
     QAction* actionNew;
     QFileDialog* fileDialog;
+    QShortcut* newFileShortcut;
+    QInputDialog* newFileVerticalInput;
+    QInputDialog* newFileHorizontalInput;
 
 private slots:
     void on_actionOpen_triggered();
