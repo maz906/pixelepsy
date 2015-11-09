@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     sprite/sprite.cpp \
     gui/pixelepsy.cpp \
     gui/toolbox.cpp \
-    tools/colorpicker.cpp
+    tools/colorpicker.cpp \
+    gui/canvas.cpp
 
 HEADERS  += \
     gui/viewer.h \
@@ -31,6 +32,13 @@ HEADERS  += \
     gui/pixelepsy.h \
     gui/toolbox.h \
     tools/tool.h \
-    tools/colorpicker.h
+    tools/colorpicker.h \
+    gui/canvas.h
 
 FORMS    += pixelepsy.ui
+
+debug:DESTDIR = debug/
+debug:OBJECTS_DIR = debug/.obj
+debug:MOC_DIR = debug/.moc
+debug:RCC_DIR = debug/.rcc
+debug:UI_DIR = debug/.ui
