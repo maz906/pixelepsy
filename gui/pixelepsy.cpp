@@ -16,8 +16,10 @@ Pixelepsy::Pixelepsy(QWidget *parent)
 {
     QImage temp = test->current().get()->getFirst();
     temp.fill(QColor(255, 0, 255, 255));
-    this->ui->setupUi(this); //essential, do not remove
-    this->setCentralWidget(mdiArea); //QMdiaArea for subwindows
+    //essential, do not remove
+    this->ui->setupUi(this);
+    //QMdiaArea for subwindows
+    this->setCentralWidget(mdiArea);
 
     //example of adding a widget and layouts.
     QWidget* tools = new QWidget;
