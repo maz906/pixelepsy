@@ -2,6 +2,7 @@
 #define SPRITEITERATOR_H
 
 
+
 class SpriteIterator
 {
 public:

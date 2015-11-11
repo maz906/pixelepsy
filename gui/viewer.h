@@ -7,6 +7,7 @@
 #include <QGraphicsPixmapItem>
 #include <memory>
 #include "sprite/buffer.h"
+#include "sprite/sprite.h"
 
 class Viewer : public QWidget
 {
@@ -16,7 +17,7 @@ private:
     QGraphicsView view;
     QGraphicsScene scene;
     QGraphicsPixmapItem item;
-    QScrollArea scoller;
+    QScrollArea scroller;
     int frame;
     int layer;
 
@@ -25,10 +26,11 @@ public:
     void selectFrame(int frame);
     void selectLayer(int layer);
     void updateView();
+    void playback();
+    void mousePressEvent(QMouseEvent *);
 signals:
-
 public slots:
-
+    //void spriteUpdated(Sprite sprite);
 };
 
 #endif // VIEWER_H
