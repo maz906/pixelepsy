@@ -24,7 +24,7 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //essential, do not remove
     //this->ui->setupUi(this);
     //QMdiaArea for subwindows
-    //this->setCentralWidget(mdiArea);
+    this->setCentralWidget(mdiArea);
 
     //example of adding a widget and layouts.
     //QWidget* tools = new QWidget;
@@ -54,7 +54,6 @@ void Pixelepsy::createFileActions() {
 void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func) {
     action = new QAction(text, menu);
     menu->addAction(action);
-    //how to send in a function for slot?
     connect(action, &QAction::triggered, this, func);
 }
 
@@ -175,12 +174,16 @@ void Pixelepsy::get_user_dimension()
         }
     break;
     }
-
+    QMessageBox bla;
+    bla.setText("I got here");
+    bla.exec();
     add_viewer(width, height);
 //    return returnValue;
 }
 
 void Pixelepsy::add_viewer(int width, int height){
-    Viewer *newView = new Viewer(std::make_shared<Buffer>(width, height));
+    Viewer* newView = new Viewer(std::make_shared<Buffer>(width, height));
+    this->mdiArea->addSubWindow(newView);
+    newView->show();
 }
 
