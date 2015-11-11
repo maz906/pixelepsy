@@ -3,17 +3,19 @@
 #include <QGridLayout>
 Toolbox::Toolbox(QWidget *parent) : QWidget(parent)
 {
-    this->setLayout(new QGridLayout(this)); //tools will be presented in a grid
+    //tools will be presented in a grid
+    this->setLayout(new QGridLayout(this));
 }
 
-Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent){
+Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent)
+{
     this->tools = tools;
     this->setLayout(new QGridLayout(this));
 
     //place the tools into the grid
-    int col = 0; int row = 0;
+    int col, row = 0;
     QGridLayout* layout = (QGridLayout*) this->layout();
-    for (auto it = tools.begin(); it != tools.end(); it++)
+    for (auto toolContainer = tools.begin(); toolContainer != tools.end(); toolContainer++)
     {
         if (col < cols)
             col++;
@@ -22,13 +24,10 @@ Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent){
             col = 0;
             row++;
         }
-        //(*it).get() is a Tool, should be ToolButton
-        layout->addItem((*it).get(), row, col);
+
+        layout->addWidget((*toolContainer).get(), row, col);
     }
+    // connect(&tools,SIGNAL(toolChanged(ToolButton &tool, )), this,SLOT(Tool::Operation));
 }
 
-void Toolbox::toolChangedSlot(Tool &tool, Tool::Operation oper) {
-    //TODO: fill this out
-    int x = 2 + 2;
-}
 
