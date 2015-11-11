@@ -43,7 +43,8 @@ private slots:
     void on_actionSave_triggered();
     void on_actionSave_As_triggered();
     void on_actionNew_triggered();
-    QPair<int, int> get_user_dimension();
+    void get_user_dimension();
+    void add_viewer(int horiz, int vert);
 };
 
 #endif // PIXELEPSY_H

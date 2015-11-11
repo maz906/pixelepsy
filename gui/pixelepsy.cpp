@@ -3,10 +3,12 @@
 
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
+#include "gui/viewer.h"
 
 #include <QGraphicsPixmapItem>
 #include <QMdiArea>
 #include <QHBoxLayout>
+
 
 Pixelepsy::Pixelepsy(QWidget *parent)
     : QMainWindow(parent)
@@ -44,7 +46,7 @@ Pixelepsy::~Pixelepsy()
 void Pixelepsy::on_actionOpen_triggered()
 {
     // Opens new file - Set to automatically go to root
-    QString fileName = QFileDialog::getOpenFileName(this, tr("TEsting"), "/", tr("fucking files (*.fuck)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Test"), "/", tr(" files (*.file)"));
 
 }
 
@@ -72,30 +74,29 @@ void Pixelepsy::on_actionSave_As_triggered()
  */
 void Pixelepsy::on_actionNew_triggered()
 {
-    QPair<int, int> userDimension = get_user_dimension();
-
-    QMessageBox invalidInputPrompt;
-    QString tmp = QString::number(userDimension.first);
-    tmp.append(" and ");
-    tmp.append(QString::number(userDimension.second));
-    invalidInputPrompt.setText(tmp);
-    invalidInputPrompt.exec();
+    get_user_dimension();
+//    QMessageBox invalidInputPrompt;
+//    QString tmp = QString::number(userDimension.first);
+//    tmp.append(" and ");
+//    tmp.append(QString::number(userDimension.second));
+//    invalidInputPrompt.setText(tmp);
+//    invalidInputPrompt.exec();
 
 }
-
 
 /*
  * Populate input dialog to get dimension from the user.
  */
-QPair<int, int> Pixelepsy::get_user_dimension()
+//QPair<int, int> Pixelepsy::get_user_dimension()
+void Pixelepsy::get_user_dimension()
 {
     // Will store the state whether user pressed Ok button or cancel.
     bool userChoice1;
     bool userChoice2;
     bool convertState;
-    int horizontalDimension;
-    int verticalDimension;
-    QPair<int, int> returnValue;
+    int width;
+    int height;
+//    QPair<int, int> returnValue;
 
     while (true) {
         // Ask user for the input.
@@ -110,10 +111,10 @@ QPair<int, int> Pixelepsy::get_user_dimension()
             break;
         }
 
-        horizontalDimension = horizontalInput.toInt(&convertState, 10);
+        width = horizontalInput.toInt(&convertState, 10);
 
         // If user input cannot be converted into an integer.
-        if (horizontalDimension <= 0 || !convertState){
+        if (width <= 0 || !convertState){
 
             //TODO Change message box text.
             QMessageBox invalidInputPrompt;
@@ -122,7 +123,7 @@ QPair<int, int> Pixelepsy::get_user_dimension()
 
             continue;
         } else {
-            returnValue.first = horizontalDimension;
+//            returnValue.first = horizontalDimension;
 
             // Obtain vertical dimension from user
             while (true) {
@@ -137,10 +138,10 @@ QPair<int, int> Pixelepsy::get_user_dimension()
                     break;
                 }
 
-                verticalDimension = verticalInput.toInt(&convertState, 10);
+                height = verticalInput.toInt(&convertState, 10);
 
                 // If user input cannot be converted into an integer.
-                if (verticalDimension <= 0 || !convertState){
+                if (height <= 0 || !convertState){
 
                     //TODO: Change message box text.
                     QMessageBox invalidInputPrompt;
@@ -149,7 +150,7 @@ QPair<int, int> Pixelepsy::get_user_dimension()
 
                     continue;
                 } else {
-                    returnValue.second = verticalDimension;
+//                    returnValue.second = verticalDimension;
                     break;
                 }
             }
@@ -157,6 +158,11 @@ QPair<int, int> Pixelepsy::get_user_dimension()
     break;
     }
 
-    return returnValue;
+    add_viewer(width, height);
+//    return returnValue;
+}
+
+void Pixelepsy::add_viewer(int width, int height){
+    Viewer *newView = new Viewer(std::make_shared<Buffer>(width, height));
 }
 
