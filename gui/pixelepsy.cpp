@@ -5,39 +5,57 @@
 #include "sprite/sprite.h"
 #include "gui/viewer.h"
 
+#include <functional>
+
 #include <QGraphicsPixmapItem>
 #include <QMdiArea>
+#include <QMenuBar>
 #include <QHBoxLayout>
 
 
 Pixelepsy::Pixelepsy(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Pixelepsy)
-    , test(new Buffer(128, 128))
     , mdiArea(new QMdiArea)
+    , bar(new QMenuBar)
 {
-    QImage temp = test->get(0,0);
-    temp.fill(QColor(255, 0, 255, 255));
+    this->setMenuBar(bar);
+    this->createFileActions();
     //essential, do not remove
-    this->ui->setupUi(this);
+    //this->ui->setupUi(this);
     //QMdiaArea for subwindows
-    this->setCentralWidget(mdiArea);
+    //this->setCentralWidget(mdiArea);
 
     //example of adding a widget and layouts.
-    QWidget* tools = new QWidget;
-    tools->setGeometry(QRect(100, 100, 100, 100));
-    tools->setWindowTitle("OMG");
-    mdiArea->addSubWindow(tools);
+    //QWidget* tools = new QWidget;
+    //tools->setGeometry(QRect(100, 100, 100, 100));
+    //tools->setWindowTitle("OMG");
+    //mdiArea->addSubWindow(tools);
     //mdiArea->setLayout(new QHBoxLayout(mdiArea));
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
-    tools->show();
+    //tools->show();
 }
 
 Pixelepsy::~Pixelepsy()
 {
-    delete test;
     delete ui;
+}
+
+void Pixelepsy::createFileActions() {
+    this->File = new QMenu(tr("&File"));
+    this->menuBar()->addMenu(this->File);
+    createAction(this->File, this->actionNew, "New", std::bind(&Pixelepsy::on_actionNew_triggered, this));
+    createAction(this->File, this->actionOpen, "Open", std::bind(&Pixelepsy::on_actionOpen_triggered, this));
+    createAction(this->File, this->actionSave, "Save", std::bind(&Pixelepsy::on_actionSave_triggered, this));
+    createAction(this->File, this->actionSaveAs, "Save As", std::bind(&Pixelepsy::on_actionSave_As_triggered, this));
+}
+
+void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func) {
+    action = new QAction(text, menu);
+    menu->addAction(action);
+    //how to send in a function for slot?
+    connect(action, &QAction::triggered, this, func);
 }
 
 /*
