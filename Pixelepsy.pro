@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     gui/pixelepsy.cpp \
     gui/toolbox.cpp \
     tools/colorpicker.cpp \
-    gui/canvas.cpp
+    gui/canvas.cpp \
+    sprite/spriteiterator.cpp
 
 HEADERS  += \
     gui/viewer.h \
@@ -33,7 +34,8 @@ HEADERS  += \
     gui/toolbox.h \
     tools/tool.h \
     tools/colorpicker.h \
-    gui/canvas.h
+    gui/canvas.h \
+    sprite/spriteiterator.h
 
 FORMS    += pixelepsy.ui
 
