@@ -22,9 +22,13 @@ private:
 
 public:
     explicit Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
+    void selectFrame(int frame);
+    void selectLayer(int layer);
+    void updateView();
 signals:
 
 public slots:
+
 };
 
 #endif // VIEWER_H
