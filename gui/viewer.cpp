@@ -10,6 +10,7 @@
 #include <QTextStream>
 #include <iostream>
 
+#include "gui/spriteview.h"
 //#include <memory>
 //
 //Viewer temp(std::make_shared<Buffer>(width, height), this)

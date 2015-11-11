@@ -11,16 +11,18 @@
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
 
+#include "gui/spriteview.h"
+
 class Viewer : public QWidget
 {
     Q_OBJECT
 private:
-    std::shared_ptr<Buffer> buffer;
-    QGraphicsView view;
-    QGraphicsScene scene;
-    QGraphicsPixmapItem item;
     int frame;
     int layer;
+    std::shared_ptr<Buffer> buffer;
+    QGraphicsPixmapItem item;
+    QGraphicsScene scene;
+    SpriteView view;
 
 public:
     explicit Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
