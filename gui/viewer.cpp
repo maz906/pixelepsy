@@ -21,17 +21,17 @@ Viewer::Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent)
     view.show();
 }
 
-Viewer::selectFrame(int frame) {
+void Viewer::selectFrame(int frame) {
     this->frame = frame;
     updateView();
 }
 
-Viewer::selectLayer(int layer) {
+void Viewer::selectLayer(int layer) {
     this->layer = layer;
     updateView();
 }
 
-Viewer::updateView() {
+void Viewer::updateView() {
     this->view.scene()->addItem(new QGraphicsPixmapItem(QPixmap::fromImage(this->buffer.get()->get(this->frame, this->layer))));
 }
 
