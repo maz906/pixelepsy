@@ -3,12 +3,14 @@
 ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent)
 {
     connect(&fgButton, &QPushButton::clicked, this, &ColorPicker::changeForegroundColor);
+    connect(&bgButton, &QPushButton::clicked, this, &ColorPicker::changeBackgroundColor);
 
-    pal.setColor(QPalette::Background,Qt::red);
-    fgButton.setAutoFillBackground(true);
-    fgButton.setPalette(pal);
-    fgButton.setFlat(true);
+    stylesheet = "background-color:";
+    //Start with a white color for both buttons.
+    color = "white;";
 
+    fgButton.setStyleSheet("background-color:white;");
+    bgButton.setStyleSheet("background-color:white;");
 
     layout.addWidget(&fgButton);
     layout.addWidget(&bgButton);
@@ -26,11 +28,26 @@ void ColorPicker::changeForegroundColor() {
     temp = colorDialog->getColor(fgColor, this);
     if(temp.isValid()) {
         fgColor = temp;
-        updateColors();
+        updateFGColors();
     }
 }
-void ColorPicker::updateColors() {
-    pal.setColor(QPalette::Background,fgColor);
-    fgButton.setPalette(pal);
-    fgButton.update();
+
+void ColorPicker::changeBackgroundColor() {
+    QColorDialog* colorDialog = new QColorDialog;
+    QColor temp;
+    temp = colorDialog->getColor(bgColor, this);
+    if(temp.isValid()) {
+        bgColor = temp;
+        updateBGColors();
+    }
+}
+void ColorPicker::updateFGColors() {
+    color = fgColor.name() + ";";
+    fgButton.setStyleSheet(stylesheet + color);
+
+}
+void ColorPicker::updateBGColors() {
+    color = bgColor.name() + ";";
+    bgButton.setStyleSheet(stylesheet + color);
+
 }

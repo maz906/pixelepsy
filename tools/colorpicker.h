@@ -16,8 +16,8 @@ class ColorPicker : public QWidget
     QPushButton fgButton;
     QPushButton bgButton;
 
-    QIcon fgBackground;
-    QIcon bgBackground;
+    QString stylesheet;
+    QString color;
 
     QColor fgColor;
     QColor bgColor;
@@ -28,13 +28,15 @@ public:
     ~ColorPicker();
     QColor getForegroundColor();
     QColor getBackgroundColor();
-    void updateColors();
+    void updateFGColors();
+    void updateBGColors();
 
 signals:
     void colorChanged(QColor fgColor, QColor bgColor);
 
 public slots:
     void changeForegroundColor();
+    void changeBackgroundColor();
 };
 
 #endif // COLORPICKER_H
