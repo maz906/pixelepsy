@@ -53,7 +53,10 @@ void Pixelepsy::on_actionOpen_triggered()
  */
 void Pixelepsy::on_actionSave_triggered()
 {
-
+    // If file isn't saved yet/
+    if (!fileSaved){
+        // do file saving process.
+    }
 }
 
 /*
@@ -69,18 +72,91 @@ void Pixelepsy::on_actionSave_As_triggered()
  */
 void Pixelepsy::on_actionNew_triggered()
 {
-    // Will store the state whether user pressed Ok button or cancel.
-    bool userChoice;
-    QString userInputDimension = QInputDialog::getText(this, tr("Dimension test"),
-                                                       tr("Your dimension here"),
-                                                       QLineEdit::Normal,
-                                                       QDir::home().dirName(), &userChoice);
+    QPair<int, int> userDimension = get_user_dimension();
 
-    if(userChoice){
-        // Only if user doesn't press on cancel button.
-        QString userInputDimension2 = QInputDialog::getText(this, tr("Dimension test"),
-                                                            tr("Your dimension here"), QLineEdit::Normal,
-                                                            QDir::home().dirName(), &userChoice);
-    }
+    QMessageBox invalidInputPrompt;
+    QString tmp = QString::number(userDimension.first);
+    tmp.append(" and ");
+    tmp.append(QString::number(userDimension.second));
+    invalidInputPrompt.setText(tmp);
+    invalidInputPrompt.exec();
 
 }
+
+
+/*
+ * Populate input dialog to get dimension from the user.
+ */
+QPair<int, int> Pixelepsy::get_user_dimension()
+{
+    // Will store the state whether user pressed Ok button or cancel.
+    bool userChoice1;
+    bool userChoice2;
+    bool convertState;
+    int horizontalDimension;
+    int verticalDimension;
+    QPair<int, int> returnValue;
+
+    while (true) {
+        // Ask user for the input.
+        QString horizontalInput = QInputDialog::getText(this,
+                                                           tr("Horizontal Dimension test"),
+                                                           tr("Your dimension here"),
+                                                           QLineEdit::Normal,
+                                                           QDir::home().dirName(),
+                                                           &userChoice1);
+        // If user chooses to cancel, get out of the loop.
+        if (!userChoice1){
+            break;
+        }
+
+        horizontalDimension = horizontalInput.toInt(&convertState, 10);
+
+        // If user input cannot be converted into an integer.
+        if (horizontalDimension <= 0 || !convertState){
+
+            //TODO Change message box text.
+            QMessageBox invalidInputPrompt;
+            invalidInputPrompt.setText("wrong input @ horizontal");
+            invalidInputPrompt.exec();
+
+            continue;
+        } else {
+            returnValue.first = horizontalDimension;
+
+            // Obtain vertical dimension from user
+            while (true) {
+                QString verticalInput = QInputDialog::getText(this,
+                                                               tr("Vertical Dimension test"),
+                                                               tr("Your dimension here"),
+                                                               QLineEdit::Normal,
+                                                               QDir::home().dirName(),
+                                                               &userChoice2);
+                // If user chooses to cancel, get out of the loop.
+                if(!userChoice2){
+                    break;
+                }
+
+                verticalDimension = verticalInput.toInt(&convertState, 10);
+
+                // If user input cannot be converted into an integer.
+                if (verticalDimension <= 0 || !convertState){
+
+                    //TODO: Change message box text.
+                    QMessageBox invalidInputPrompt;
+                    invalidInputPrompt.setText("wrong input @ vertical");
+                    invalidInputPrompt.exec();
+
+                    continue;
+                } else {
+                    returnValue.second = verticalDimension;
+                    break;
+                }
+            }
+        }
+    break;
+    }
+
+    return returnValue;
+}
+

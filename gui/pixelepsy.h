@@ -12,6 +12,8 @@
 #include <QShortcut>
 #include <QKeySequence>
 #include <QInputDialog>
+#include <QMessageBox>
+#include <QPair>
 
 namespace Ui {
 class Pixelepsy;
@@ -34,12 +36,14 @@ private:
     QShortcut* newFileShortcut;
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
+    bool* fileSaved;
 
 private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionSave_As_triggered();
     void on_actionNew_triggered();
+    QPair<int, int> get_user_dimension();
 };
 
 #endif // PIXELEPSY_H
