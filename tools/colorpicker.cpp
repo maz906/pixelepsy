@@ -8,6 +8,7 @@ ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent)
     fgButton.setAutoFillBackground(true);
     fgButton.setPalette(pal);
     fgButton.setFlat(true);
+    fgButton.setStyleSheet("background-color:red;");
 
 
     layout.addWidget(&fgButton);
