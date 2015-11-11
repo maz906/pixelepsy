@@ -35,6 +35,8 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
+    ColorPicker* c = new ColorPicker;
+    mdiArea->addSubWindow(c);
 }
 
 Pixelepsy::~Pixelepsy()

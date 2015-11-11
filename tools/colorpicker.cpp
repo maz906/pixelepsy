@@ -44,10 +44,12 @@ void ColorPicker::changeBackgroundColor() {
 void ColorPicker::updateFGColors() {
     color = fgColor.name() + ";";
     fgButton.setStyleSheet(stylesheet + color);
+    emit colorChanged(fgColor, bgColor);
 
 }
 void ColorPicker::updateBGColors() {
     color = bgColor.name() + ";";
     bgButton.setStyleSheet(stylesheet + color);
+    emit colorChanged(fgColor, bgColor);
 
 }
