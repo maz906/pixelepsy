@@ -2,6 +2,11 @@
 
 #include <QGraphicsPixmapItem>
 #include <QGridLayout>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QMessageBox>
+#include <QMouseEvent>
+#include <QTextStream>
 
 //#include <memory>
 //
@@ -35,5 +40,18 @@ void Viewer::updateView() {
     this->view.scene()->addItem(new QGraphicsPixmapItem(QPixmap::fromImage(this->buffer.get()->get(this->frame, this->layer))));
 }
 
+void Viewer::mousePressEvent(QMouseEvent* event) {
+    QTextStream cout(stdout);
+    cout << event->pos().x();
+    cout << this->view.pos().x();
+    cout << this->scene.
+}
 
-
+QPoint Viewer::findPixmapLocation() {
+    this->view.pos();\
+    QGraphicsItem* focusItem = this->view.scene()->focusItem();
+    QGraphicsView* focusView = this->view.scene()->views().first();
+    QPointF point = focusItem->mapToScene(focusItem->boundingRect().bottomRight());
+    //return focusView->viewport()->mapToGlobal(focusView->mapFromScene(focusItem->mapToScene(focusItem->boundingRect().bottomRight())));
+    return QPoint();
+}

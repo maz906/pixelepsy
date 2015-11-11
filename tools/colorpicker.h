@@ -25,6 +25,7 @@ class ColorPicker : public QWidget
     QPalette pal;
 public:
     explicit ColorPicker(QWidget *parent = 0);
+    ~ColorPicker();
     QColor getForegroundColor();
     QColor getBackgroundColor();
     void updateColors();

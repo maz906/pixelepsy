@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QGraphicsView>
+#include <QPoint>
 #include <QScrollArea>
 #include <QGraphicsPixmapItem>
 #include <memory>
@@ -28,6 +29,7 @@ public:
     void updateView();
     void playback();
     void mousePressEvent(QMouseEvent *);
+    QPoint findPixmapLocation();
 signals:
 public slots:
     //void spriteUpdated(Sprite sprite);

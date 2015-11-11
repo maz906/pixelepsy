@@ -16,6 +16,10 @@ ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent)
     this->setLayout(&layout);
     this->show();
 }
+ColorPicker::~ColorPicker() {
+
+}
+
 void ColorPicker::changeForegroundColor() {
     QColorDialog* colorDialog = new QColorDialog;
     QColor temp;
