@@ -8,10 +8,17 @@
 #include "tools/tool.h"
 #include "sprite/buffer.h"
 
+class ToolButton : public QPushButton
+{
+    Q_OBJECT
+private:
+    Tool *tool;
+};
+
 class Toolbox : public QWidget
 {
     Q_OBJECT
-    typedef std::vector<std::shared_ptr<Tool>> Toolkit;
+    typedef std::vector<std::shared_ptr<ToolButton>> Toolkit;
 private:
     Toolkit tools;
     std::vector<Buffer> buffers;
@@ -20,11 +27,11 @@ public:
     explicit Toolbox(Toolkit tools, QWidget *parent = 0, int cols = 1);
 
 signals:
-    //should take in a Tool
-    void pickToolSignal(Tool::Operation tool);
+    void toolChanged(Tool&, Tool::Operation);
 
 public slots:
-    void toolChangedSlot(Tool& tool, Tool::Operation oper);
+    //should take in a Tool
+    // void toolSelected(Tool::Operation);
 };
 
 #endif // TOOLBOX_H

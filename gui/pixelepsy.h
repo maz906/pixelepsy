@@ -30,6 +30,7 @@ public:
     ~Pixelepsy();
     void createFileActions();
     void createAction(QMenu*, QAction*, const QString&, std::function<void()> func);
+    void connectToolboxToMain();
 
 private:
     Ui::Pixelepsy *ui;

@@ -42,6 +42,10 @@ Pixelepsy::~Pixelepsy()
     delete ui;
 }
 
+void Pixelepsy::connectToolboxToMain(){
+
+}
+
 void Pixelepsy::createFileActions() {
     this->File = new QMenu(tr("&File"));
     this->menuBar()->addMenu(this->File);
@@ -92,19 +96,11 @@ void Pixelepsy::on_actionSave_As_triggered()
 void Pixelepsy::on_actionNew_triggered()
 {
     get_user_dimension();
-//    QMessageBox invalidInputPrompt;
-//    QString tmp = QString::number(userDimension.first);
-//    tmp.append(" and ");
-//    tmp.append(QString::number(userDimension.second));
-//    invalidInputPrompt.setText(tmp);
-//    invalidInputPrompt.exec();
-
 }
 
 /*
  * Populate input dialog to get dimension from the user.
  */
-//QPair<int, int> Pixelepsy::get_user_dimension()
 void Pixelepsy::get_user_dimension()
 {
     // Will store the state whether user pressed Ok button or cancel.
@@ -113,7 +109,6 @@ void Pixelepsy::get_user_dimension()
     bool convertState;
     int width;
     int height;
-//    QPair<int, int> returnValue;
 
     while (true) {
         // Ask user for the input.
@@ -121,7 +116,7 @@ void Pixelepsy::get_user_dimension()
                                                            tr("Horizontal Dimension test"),
                                                            tr("Your dimension here"),
                                                            QLineEdit::Normal,
-                                                           QDir::home().dirName(),
+                                                           "",
                                                            &userChoice1);
         // If user chooses to cancel, get out of the loop.
         if (!userChoice1){
@@ -140,7 +135,6 @@ void Pixelepsy::get_user_dimension()
 
             continue;
         } else {
-//            returnValue.first = horizontalDimension;
 
             // Obtain vertical dimension from user
             while (true) {
@@ -148,7 +142,7 @@ void Pixelepsy::get_user_dimension()
                                                                tr("Vertical Dimension test"),
                                                                tr("Your dimension here"),
                                                                QLineEdit::Normal,
-                                                               QDir::home().dirName(),
+                                                               "",
                                                                &userChoice2);
                 // If user chooses to cancel, get out of the loop.
                 if(!userChoice2){
@@ -167,15 +161,16 @@ void Pixelepsy::get_user_dimension()
 
                     continue;
                 } else {
-//                    returnValue.second = verticalDimension;
                     break;
                 }
             }
         }
     break;
     }
-    add_viewer(width, height);
-//    return returnValue;
+
+    if(userChoice1 && userChoice2){
+        add_viewer(width, height);
+    }
 }
 
 void Pixelepsy::add_viewer(int width, int height){
