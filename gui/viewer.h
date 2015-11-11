@@ -6,6 +6,7 @@
 #include <QPoint>
 #include <QScrollArea>
 #include <QGraphicsPixmapItem>
+#include <QTextStream>
 #include <memory>
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
@@ -18,7 +19,6 @@ private:
     QGraphicsView view;
     QGraphicsScene scene;
     QGraphicsPixmapItem item;
-    QScrollArea scroller;
     int frame;
     int layer;
 
@@ -29,7 +29,10 @@ public:
     void updateView();
     void playback();
     void mousePressEvent(QMouseEvent *);
-    QPoint findPixmapLocation();
+    void mouseMoveEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    //finds the location on the pixmap of the pixel clicked
+    QPoint pixelLocation(QMouseEvent*);
 signals:
 public slots:
     //void spriteUpdated(Sprite sprite);

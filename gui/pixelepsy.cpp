@@ -167,9 +167,9 @@ void Pixelepsy::get_user_dimension()
         }
     break;
     }
-
+    //TODO: add a scale so that the canvases aren't so small
     if(userChoice1 && userChoice2){
-        add_viewer(width, height);
+        add_viewer(20*width, 20*height);
     }
 }
 
