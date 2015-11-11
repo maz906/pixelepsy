@@ -32,6 +32,9 @@ public:
 
     QImage get(int frame, int layer);
     std::shared_ptr<Sprite> current();
+
+signals:
+    void spriteEdited(Sprite sprite);
 };
 
 #endif // BUFFER_H

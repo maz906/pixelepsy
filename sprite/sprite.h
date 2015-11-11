@@ -3,6 +3,8 @@
 
 #include "sprite/frame.h"
 
+#include <QImage>
+
 #include <vector>
 
 class Sprite
@@ -15,6 +17,7 @@ public:
     Sprite() = delete;
     Sprite(int width, int height);
     Frame getFrame(int frame);
+    QImage getImage(int frame, int layer);
 };
 
 #endif // SPRITE_H
