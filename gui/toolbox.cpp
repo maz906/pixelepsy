@@ -28,6 +28,7 @@ Toolbox::Toolbox(Toolkit tools, QWidget *parent, int cols) : QWidget(parent)
         layout->addWidget((*toolContainer).get(), row, col);
     }
     // connect(&tools,SIGNAL(toolChanged(ToolButton &tool, )), this,SLOT(Tool::Operation));
+
 }
 
 
