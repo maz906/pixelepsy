@@ -121,7 +121,7 @@ void Pixelepsy::get_user_dimension()
                                                            tr("Horizontal Dimension test"),
                                                            tr("Your dimension here"),
                                                            QLineEdit::Normal,
-                                                           QDir::home().dirName(),
+                                                           "",
                                                            &userChoice1);
         // If user chooses to cancel, get out of the loop.
         if (!userChoice1){
@@ -148,7 +148,7 @@ void Pixelepsy::get_user_dimension()
                                                                tr("Vertical Dimension test"),
                                                                tr("Your dimension here"),
                                                                QLineEdit::Normal,
-                                                               QDir::home().dirName(),
+                                                               "",
                                                                &userChoice2);
                 // If user chooses to cancel, get out of the loop.
                 if(!userChoice2){
