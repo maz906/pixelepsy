@@ -4,6 +4,8 @@
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
 
+#include <memory>
+
 #include <QMainWindow>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsView>
@@ -26,17 +28,23 @@ class Pixelepsy : public QMainWindow
 public:
     explicit Pixelepsy(QWidget *parent = 0);
     ~Pixelepsy();
+    void createFileActions();
+    void createAction(QMenu*, QAction*, const QString&, std::function<void()> func);
 
 private:
     Ui::Pixelepsy *ui;
-    Buffer* test;
     QMdiArea* mdiArea;
-    QAction* actionNew;
     QFileDialog* fileDialog;
     QShortcut* newFileShortcut;
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
     bool* fileSaved;
+    QMenu* File;
+    QAction* actionNew;
+    QAction* actionOpen;
+    QAction* actionSave;
+    QAction* actionSaveAs;
+    QMenuBar* bar;
 
 private slots:
     void on_actionOpen_triggered();
