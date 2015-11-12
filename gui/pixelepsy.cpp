@@ -35,9 +35,10 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
-    fileSaved = false;
+    *fileSaved = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
+
 }
 
 Pixelepsy::~Pixelepsy()
@@ -69,8 +70,11 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
  */
 void Pixelepsy::on_actionOpen_triggered()
 {
-    // Opens new file - Set to automatically go to root
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Test"), "/", tr(" files (*.file)"));
+
+
+    QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
+
+
 
 }
 
@@ -87,6 +91,8 @@ void Pixelepsy::on_actionSave_triggered()
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream filestream(&file);
             filestream << "test text" << endl;
+            //set flag for saved file
+            // fileSaved = true;
         }
     }
 }
@@ -96,6 +102,15 @@ void Pixelepsy::on_actionSave_triggered()
  */
 void Pixelepsy::on_actionSave_As_triggered()
 {
+        // do file saving process.
+        filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
+        QFile file(filename);
+        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+            QTextStream filestream(&file);
+            filestream << "test text" << endl;
+            //set flag for saved file
+            // fileSaved = true;
+        }
 
 }
 
