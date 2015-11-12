@@ -10,7 +10,7 @@ SpriteView::SpriteView(std::shared_ptr<Buffer> buffer, QWidget* parent)
     : QGraphicsView(parent)
     , frameIndex(0)
     , layerIndex(0)
-    , scala(20)
+    , scala(1)
     , buffer(buffer)
     , scene(new QGraphicsScene)
 {

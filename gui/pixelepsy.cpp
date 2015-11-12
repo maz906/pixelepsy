@@ -6,6 +6,7 @@
 #include "gui/viewer.h"
 
 #include <functional>
+#include <memory>
 
 #include <QGraphicsPixmapItem>
 #include <QMdiArea>
@@ -116,28 +117,26 @@ void Pixelepsy::on_actionOpen_triggered()
             file.open(QIODevice::ReadOnly);
             QTextStream fileStream(&file);
 
-//          QString buff = fileStream.readAll();
 
-            fileStream << "got here";
-
-//          Buffer buffer(1,2);
-
-            fileStream >> width >> height >> frames;
-
-            Buffer buffer(width, height);
-            for (int i = 0; i < frames; i++){
-                buffer.current()->addFrame();
-
-                for (int j = 0; j < height; j++){
-
-                    for (int k = 0; k < width; k++){
-
-                        for(int l = 0; l < 4; l++){
-                            QColor pixel();
-                        }
+            fileStream >> width >> height;
+            fileStream >> frames;
+            int red, green, blue, alpha;
+            Buffer* buffer = new Buffer(width, height);
+            for (int frame = 0; frame < frames; frame++) {
+                if (frame)
+                    buffer->current()->addFrame();
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        fileStream >> red >> green >> blue >> alpha;
+                        QRgb value = qRgba(red, green, blue, alpha);
+                        buffer->get(frame, 0).setPixel(x, y, value);
                     }
                 }
             }
+            Viewer* view = new Viewer(std::shared_ptr<Buffer>(buffer));
+            this->mdiArea->addSubWindow(view);
+            view->show();
+            view->updateView();
         }
     }
 }

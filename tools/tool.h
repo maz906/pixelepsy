@@ -15,21 +15,24 @@ class Tool : public QLayoutItem
 {
 
 public:
-    typedef std::function<std::shared_ptr<Sprite>(const Sprite, int frame, int layer, std::vector<QPoint>)> Operation;
+    typedef std::function<Sprite(Sprite, int frame, int layer, std::vector<QPoint>)> Operation;
 
-    Tool();
+    virtual ~Tool() {};
+
     //this should be specialized to an Operation when colorChanged
     //is called
-    virtual Sprite operation(const Sprite, std::vector<QPoint>, QColor, QColor);
+    virtual Sprite operation(const Sprite, std::vector<QPoint>, int frame, int layer, QColor, QColor) = 0;
 
 public slots:
     //specializes operation to an Operation and fires a toolchangedSignal.
     //specialization happens by setting the two QColor arguments in operation
     //to foreground and background
-    virtual void colorChanged(QColor foreground, QColor background);
+    virtual void colorChanged(QColor foreground, QColor background) = 0;
 
 signals:
-    virtual void toolChangedSignal(Operation oper);
+    virtual void toolChangedSignal(Operation oper) = 0;
+
+    virtual void toolSelectedSignal() = 0;
 
 };
 
