@@ -51,6 +51,23 @@ Pixelepsy::~Pixelepsy()
     delete ui;
 }
 
+/*
+ * Helper method which will send prompt when a new project would
+ * occur before save operation
+ */
+void Pixelepsy::newProject(){
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Exit", "Save changes to the document before closing?", QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel);
+    if (reply == QMessageBox::Yes)
+    {
+        on_actionSave_triggered();
+    }
+    else if (reply != QMessageBox::Cancel)
+    {
+        //TODO: Reset the sprite class and window
+    }
+}
+
 void Pixelepsy::connectToolboxToMain(){
 
 }

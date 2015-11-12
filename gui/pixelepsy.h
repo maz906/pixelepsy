@@ -35,7 +35,7 @@ public:
     void createFileActions();
     void createAction(QMenu*, QAction*, const QString&, std::function<void()> func);
     void connectToolboxToMain();
-
+    void newProject();
 private:
     Ui::Pixelepsy *ui;
     QMdiArea* mdiArea;
