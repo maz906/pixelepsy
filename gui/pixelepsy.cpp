@@ -36,7 +36,8 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
-    fileSaved = false;
+    fileSaved = true;
+    cancelFlag = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
 
@@ -62,11 +63,14 @@ void Pixelepsy::newProject(){
     {
         on_actionSave_triggered();
     }
-    else if (reply != QMessageBox::Cancel)
+    else if (reply == QMessageBox::No)
     {
         //TODO: Reset the sprite class and window
+    } else {
+        cancelFlag = true;
     }
 }
+
 
 void Pixelepsy::connectToolboxToMain(){
 
@@ -92,24 +96,22 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
  */
 void Pixelepsy::on_actionOpen_triggered()
 {
+    if (!fileSaved)
+        newProject();
+    if(cancelFlag || fileSaved){
+        QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
 
-    QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
+        //as long as file can be opened, proceed
+        if (file.exists())
+        {
+            //create parameters to load from buffer
+            int width, height, frames;
 
-    //as long as file can be opened, proceed
-    if (file.exists())
-    {
-        //create parameters to load from buffer
-        int width, height, frames;
+            file.open(QIODevice::ReadOnly);
+            QTextStream fileStream(&file);
 
-        file.open(QIODevice::ReadOnly);
-        QTextStream fileStream(&file);
-
-
-
-
+        }
     }
-
-
 }
 
 /*
