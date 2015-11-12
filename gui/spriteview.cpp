@@ -34,14 +34,6 @@ bool SpriteView::checkPoint(QPoint point) {
     return ((x >= 0) && (y >= 0)) && ((x < width) && (y < height));
 }
 
-void SpriteView::selectFrame(int frame) {
-
-}
-
-void SpriteView::selectLayer(int layer) {
-
-}
-
 void SpriteView::updateView() {
     scene.clear();
     Frame frame = buffer->current()->getFrame(frameIndex);
@@ -57,8 +49,13 @@ void SpriteView::spriteModified() {
 }
 
 void SpriteView::closeEvent(QCloseEvent* event) {
-    if (!(this->buffer.use_count - 1))
+    (void)event;
+    if (!(this->buffer.use_count() - 1))
     {
         //save dialog
     }
 }
+
+ void SpriteView::mousePressEvent(QMouseEvent *) {};
+ void SpriteView::mouseMoveEvent(QMouseEvent *) {};
+ void SpriteView::mouseReleaseEvent(QMouseEvent *) {};

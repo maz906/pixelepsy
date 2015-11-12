@@ -22,20 +22,8 @@ Pixelepsy::Pixelepsy(QWidget *parent)
 {
     this->setMenuBar(bar);
     this->createFileActions();
-    //essential, do not remove
-    //this->ui->setupUi(this);
-    //QMdiaArea for subwindows
     this->setCentralWidget(mdiArea);
 
-    //example of adding a widget and layouts.
-    //QWidget* tools = new QWidget;
-    //tools->setGeometry(QRect(100, 100, 100, 100));
-    //tools->setWindowTitle("OMG");
-    //mdiArea->addSubWindow(tools);
-    //mdiArea->setLayout(new QHBoxLayout(mdiArea));
-    //mdiArea->layout()->addWidget(tools);
-    //mdiArea won't allow adding widgets. only subwindows.
-    //tools->show();
     fileSaved = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
@@ -48,7 +36,11 @@ Pixelepsy::Pixelepsy(QWidget *parent)
 
 Pixelepsy::~Pixelepsy()
 {
+    //how to delete colorpicker?
+    mdiArea->closeAllSubWindows();
     delete ui;
+    delete mdiArea;
+    delete bar;
 }
 
 /*

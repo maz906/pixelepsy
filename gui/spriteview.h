@@ -28,14 +28,14 @@ public:
     void updateView();
     void closeEvent(QCloseEvent *);
 
-private:
+protected:
+    int frameIndex;
+    int layerIndex;
+    double scala;
     std::shared_ptr<Buffer> buffer;
     std::vector<QPoint> points;
     QVBoxLayout layout;
     QGraphicsScene scene;
-    int frameIndex;
-    int layerIndex;
-    double scala;
 
 public slots:
     void spriteModified();
