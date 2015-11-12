@@ -43,7 +43,7 @@ private:
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
     QSaveFile save;
-    bool* fileSaved;
+    bool fileSaved;
     QMenu* File;
     QAction* actionNew;
     QAction* actionOpen;

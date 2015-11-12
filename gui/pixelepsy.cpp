@@ -11,6 +11,7 @@
 #include <QMdiArea>
 #include <QMenuBar>
 #include <QHBoxLayout>
+#include <QTextStream>
 
 
 Pixelepsy::Pixelepsy(QWidget *parent)
@@ -35,7 +36,7 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
-    *fileSaved = false;
+    fileSaved = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
 
@@ -90,9 +91,12 @@ void Pixelepsy::on_actionSave_triggered()
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream filestream(&file);
+
             filestream << "test text" << endl;
             //set flag for saved file
             // fileSaved = true;
+
+            filestream << "test text" << '\n';
         }
     }
 }

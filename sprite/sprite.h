@@ -23,6 +23,8 @@ public:
     Frame getFrame(int frame);
 
     QImage getImage(int frame, int layer);
+
+    void addFrame();
 };
 
 #endif // SPRITE_H

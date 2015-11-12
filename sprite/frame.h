@@ -19,6 +19,8 @@ public:
 
     std::vector<std::shared_ptr<QImage>>::const_iterator getLayersBegin();
     std::vector<std::shared_ptr<QImage>>::const_iterator getLayersEnd();
+
+    Frame clone();
 };
 
 #endif // FRAME_H
