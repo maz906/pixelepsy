@@ -18,10 +18,6 @@ private:
 public:
     explicit Canvas(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
 signals:
-    void onClicked(std::vector<QPoint> points);
-    void onPressed(std::vector<QPoint> points);
-public slots:
-    //void spriteUpdated(Sprite sprite);
 };
 
 #endif // CANVAS_H

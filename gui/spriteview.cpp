@@ -64,3 +64,7 @@ void SpriteView::updateView() {
     }
     this->scale(qreal(scala), qreal(scala));
 }
+
+void SpriteView::spriteModified() {
+    updateView();
+}

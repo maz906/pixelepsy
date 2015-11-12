@@ -36,6 +36,8 @@ private:
     int layerIndex;
     double scala;
 
+public slots:
+    void spriteModified();
 };
 
 #endif // SPRITEVIEW_H

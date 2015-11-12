@@ -11,6 +11,7 @@
 #include <QMdiArea>
 #include <QMenuBar>
 #include <QHBoxLayout>
+#include <QTextStream>
 
 
 Pixelepsy::Pixelepsy(QWidget *parent)
@@ -86,7 +87,7 @@ void Pixelepsy::on_actionSave_triggered()
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream filestream(&file);
-            filestream << "test text" << endl;
+            filestream << "test text" << '\n';
         }
     }
 }
