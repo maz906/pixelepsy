@@ -2,17 +2,23 @@
 #define SPRITEVIEW_H
 
 #include <QGraphicsView>
-#include <QMouseEvent>
+#include <QGraphicsSceneMouseEvent>
+
+#include <vector>
 
 class SpriteView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit SpriteView(QWidget* parent = 0);
-    void mousePressEvent(QGraphicsSceneMouseEvent*);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent*);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent*);
+    SpriteView(QWidget* parent = 0);
+    SpriteView(QGraphicsScene* scene,  QWidget* parent = 0);
+    void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
     QPoint pixelLocation(QMouseEvent*);
+
+private:
+    std::vector<QPoint> points;
 };
 
 #endif // SPRITEVIEW_H

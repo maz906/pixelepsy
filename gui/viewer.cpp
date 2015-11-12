@@ -9,26 +9,21 @@
 #include <QGraphicsView>
 #include <QMessageBox>
 #include <QMouseEvent>
-#include <QMouseEvent>
 #include <QTextStream>
 
 Viewer::Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent)
-    : QWidget(parent)
-
+    : QGraphicsView(parent)
     , frameIndex(0)
     , layerIndex(0)
-    , scale(1)
-
+    , scala(20)
     , buffer(buffer)
+    , scene(new QGraphicsScene)
 {
-    layout.addWidget(&view);
-
     this->setLayout(&layout);
     this->setContentsMargins(0, 0, 0, 0);
-
+    this->setScene(&scene);
     updateView();
-
-    view.show();
+    this->show();
 }
 
 
@@ -41,6 +36,31 @@ void Viewer::updateView() {
         scene.addPixmap(QPixmap::fromImage(**layer))
             ->show();
     }
-
-    view.scale(scale, scale);
+    this->scale(qreal(scala), qreal(scala));
 }
+
+QPoint Viewer::pixelLocation(QMouseEvent* event) {
+    return (this->mapToScene(event->pos())).toPoint();
+}
+
+void Viewer::mousePressEvent(QMouseEvent *event) {
+    this->points.clear();
+}
+
+void Viewer::mouseReleaseEvent(QMouseEvent *event) {
+}
+
+void Viewer::mouseMoveEvent(QMouseEvent *event) {
+    QPoint point = this->pixelLocation(event);
+    if (checkPoint(point))
+        this->points.push_back(point);
+}
+
+bool Viewer::checkPoint(QPoint point) {
+    int x = point.x();
+    int y = point.y();
+    int width = this->buffer.get()->current().get()->getWidth();
+    int height = this->buffer.get()->current().get()->getHeight();
+    return ((x >= 0) && (y >= 0)) && ((x < width) && (y < height));
+}
+
