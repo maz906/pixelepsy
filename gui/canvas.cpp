@@ -1,7 +1,11 @@
-#include "canvas.h"
+#include "gui/canvas.h"
+#include "sprite/buffer.h"
+#include "sprite/sprite.h"
 
-Canvas::Canvas(QWidget *parent) : QWidget(parent)
+#include <memory>
+
+Canvas::Canvas(std::shared_ptr<Buffer> buffer, QWidget *parent)
+    : SpriteView(buffer, parent)
 {
-
 }
 

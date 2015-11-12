@@ -27,3 +27,7 @@ QImage Sprite::getImage(int frame, int layer) {
 std::vector<Frame> Sprite::getFrames() {
     return frames;
 }
+
+void Sprite::addFrame() {
+    frames.push_back(frames.back().clone());
+}

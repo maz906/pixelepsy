@@ -19,6 +19,8 @@
 #include <QSaveFile>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QImage>
+#include <QPixmap>
 
 namespace Ui {
 class Pixelepsy;
@@ -34,7 +36,7 @@ public:
     void createFileActions();
     void createAction(QMenu*, QAction*, const QString&, std::function<void()> func);
     void connectToolboxToMain();
-
+    void newProject();
 private:
     Ui::Pixelepsy *ui;
     QMdiArea* mdiArea;
@@ -44,13 +46,15 @@ private:
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
     QSaveFile save;
-    bool* fileSaved;
+    bool fileSaved;
+    bool cancelFlag;
     QMenu* File;
     QAction* actionNew;
     QAction* actionOpen;
     QAction* actionSave;
     QAction* actionSaveAs;
     QMenuBar* bar;
+    QImage* image;
 
 private slots:
     void on_actionOpen_triggered();
