@@ -89,6 +89,7 @@ void Pixelepsy::on_actionOpen_triggered()
 
 
 
+
     }
 
 
@@ -107,11 +108,11 @@ void Pixelepsy::on_actionSave_triggered()
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream fileStream(&file);
 
-            filestream << "test text" << endl;
+            fileStream << "test text" << endl;
             //set flag for saved file
             // fileSaved = true;
 
-            filestream << "test text" << '\n';
+            fileStream << "test text" << '\n';
         }
     }
 }
