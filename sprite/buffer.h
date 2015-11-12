@@ -18,13 +18,12 @@ class Buffer : QObject
     Q_OBJECT
 
 
-
 private:
 
     std::deque<std::shared_ptr<Sprite>> history;
     std::deque<std::shared_ptr<Sprite>> future;
 
-    std::shared_ptr<Tool::Operation> operation;
+    Tool::Operation operation;
 public:
     Buffer() = delete;
 
@@ -32,6 +31,8 @@ public:
 
     QImage get(int frame, int layer);
     std::shared_ptr<Sprite> current();
+
+    void applyOperation(std::vector<QPoint> &points);
 
 signals:
     void spriteModified(Sprite sprite);

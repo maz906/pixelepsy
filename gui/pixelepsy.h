@@ -16,6 +16,8 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QPair>
+#include <QSaveFile>
+#include <QFileDialog>
 
 namespace Ui {
 class Pixelepsy;
@@ -36,9 +38,11 @@ private:
     Ui::Pixelepsy *ui;
     QMdiArea* mdiArea;
     QFileDialog* fileDialog;
+    QString filename;
     QShortcut* newFileShortcut;
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
+    QSaveFile save;
     bool* fileSaved;
     QMenu* File;
     QAction* actionNew;
