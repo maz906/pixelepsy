@@ -18,6 +18,8 @@
 #include <QPair>
 #include <QSaveFile>
 #include <QFileDialog>
+#include <QImage>
+#include <QPixmap>
 
 namespace Ui {
 class Pixelepsy;
@@ -50,6 +52,7 @@ private:
     QAction* actionSave;
     QAction* actionSaveAs;
     QMenuBar* bar;
+    QImage* image;
 
 private slots:
     void on_actionOpen_triggered();

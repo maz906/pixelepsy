@@ -36,9 +36,9 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea->layout()->addWidget(tools);
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
-    fileSaved = false;
-    ColorPicker* c = new ColorPicker;
-    mdiArea->addSubWindow(c);
+//    fileSaved = false;
+//    ColorPicker* c = new ColorPicker;
+//    mdiArea->addSubWindow(c);
 }
 
 Pixelepsy::~Pixelepsy()
@@ -123,8 +123,8 @@ void Pixelepsy::get_user_dimension()
     while (true) {
         // Ask user for the input.
         QString horizontalInput = QInputDialog::getText(this,
-                                                           tr("Horizontal Dimension test"),
-                                                           tr("Your dimension here"),
+                                                           tr("New File"),
+                                                           tr("Please enter your width dimension."),
                                                            QLineEdit::Normal,
                                                            "",
                                                            &userChoice1);
@@ -140,7 +140,7 @@ void Pixelepsy::get_user_dimension()
 
             //TODO Change message box text.
             QMessageBox invalidInputPrompt;
-            invalidInputPrompt.setText("wrong input @ horizontal");
+            invalidInputPrompt.setText("You entered an incorrect input. Please try again.");
             invalidInputPrompt.exec();
 
             continue;
@@ -149,8 +149,8 @@ void Pixelepsy::get_user_dimension()
             // Obtain vertical dimension from user
             while (true) {
                 QString verticalInput = QInputDialog::getText(this,
-                                                               tr("Vertical Dimension test"),
-                                                               tr("Your dimension here"),
+                                                               tr("New File"),
+                                                               tr("Please enter your height dimension."),
                                                                QLineEdit::Normal,
                                                                "",
                                                                &userChoice2);
@@ -166,7 +166,7 @@ void Pixelepsy::get_user_dimension()
 
                     //TODO: Change message box text.
                     QMessageBox invalidInputPrompt;
-                    invalidInputPrompt.setText("wrong input @ vertical");
+                    invalidInputPrompt.setText("You entered an incorrect input. Please try again.");
                     invalidInputPrompt.exec();
 
                     continue;
