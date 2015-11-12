@@ -120,6 +120,22 @@ void Pixelepsy::on_actionOpen_triggered()
 
 //            Buffer buffer(1,2);
 
+            fileStream >> width >> height >> frames;
+
+            Buffer buffer(width, height);
+            for (int i = 0; i < frames; i++){
+                buffer.current()->addFrame();
+
+                for (int j = 0; j < height; j++){
+
+                    for (int k = 0; k < width; k++){
+
+                        for(int l = 0; l < 4; l++){
+                            QColor pixel();
+                        }
+                    }
+                }
+            }
         }
     }
 }
