@@ -96,6 +96,8 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
  */
 void Pixelepsy::on_actionOpen_triggered()
 {
+
+
     if (!fileSaved)
         newProject();
     if(cancelFlag || fileSaved){
@@ -109,6 +111,12 @@ void Pixelepsy::on_actionOpen_triggered()
 
             file.open(QIODevice::ReadOnly);
             QTextStream fileStream(&file);
+
+            QString buff = fileStream.readAll();
+
+            fileStream << "got here";
+
+//            Buffer buffer(1,2);
 
         }
     }
