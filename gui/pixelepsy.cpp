@@ -109,16 +109,18 @@ void Pixelepsy::on_actionOpen_triggered()
         if (file.exists())
         {
             //create parameters to load from buffer
-            int width, height, frames;
+            int width;
+            int height;
+            int frames;
 
             file.open(QIODevice::ReadOnly);
             QTextStream fileStream(&file);
 
-            QString buff = fileStream.readAll();
+//          QString buff = fileStream.readAll();
 
             fileStream << "got here";
 
-//            Buffer buffer(1,2);
+//          Buffer buffer(1,2);
 
             fileStream >> width >> height >> frames;
 
@@ -206,9 +208,9 @@ void Pixelepsy::get_user_dimension()
                                                            "",
                                                            &userChoice1);
         // If user chooses to cancel, get out of the loop.
-        if (!userChoice1){
+        if (!userChoice1)
             break;
-        }
+
 
         width = horizontalInput.toInt(&convertState, 10);
 
@@ -232,9 +234,8 @@ void Pixelepsy::get_user_dimension()
                                                                "",
                                                                &userChoice2);
                 // If user chooses to cancel, get out of the loop.
-                if(!userChoice2){
+                if(!userChoice2)
                     break;
-                }
 
                 height = verticalInput.toInt(&convertState, 10);
 
