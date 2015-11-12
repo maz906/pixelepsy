@@ -19,7 +19,7 @@
 
 namespace Ui {
 class Pixelepsy;
-}
+a}
 
 class Pixelepsy : public QMainWindow
 {

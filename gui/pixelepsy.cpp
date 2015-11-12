@@ -4,6 +4,7 @@
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
 #include "gui/viewer.h"
+#include "gui/timeline.h"
 
 #include <functional>
 
@@ -36,6 +37,8 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     //mdiArea won't allow adding widgets. only subwindows.
     //tools->show();
     ColorPicker* c = new ColorPicker;
+    Timeline* t = new Timeline;
+    mdiArea->addSubWindow(t);
     mdiArea->addSubWindow(c);
 }
 

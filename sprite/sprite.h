@@ -18,6 +18,7 @@ public:
     Sprite(int width, int height);
     Frame getFrame(int frame);
     QImage getImage(int frame, int layer);
+    std::vector<Frame> getFrames();
 };
 
 #endif // SPRITE_H

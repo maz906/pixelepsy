@@ -14,3 +14,6 @@ Frame Sprite::getFrame(int frame) {
 QImage Sprite::getImage(int frame, int layer) {
     return *(this->getFrame(frame).getLayer(layer).get());
 }
+std::vector<Frame> Sprite::getFrames() {
+    return frames;
+}
