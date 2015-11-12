@@ -76,9 +76,20 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
 void Pixelepsy::on_actionOpen_triggered()
 {
 
-
     QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
 
+    //as long as file can be opened, proceed
+    if (file.exists())
+    {
+        //create parameters to load from buffer
+        int width, height, frames;
+
+        file.open(QIODevice::ReadOnly);
+        QTextStream fileStream(&file);
+
+
+
+    }
 
 
 }
@@ -94,7 +105,7 @@ void Pixelepsy::on_actionSave_triggered()
         filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
-            QTextStream filestream(&file);
+            QTextStream fileStream(&file);
 
             filestream << "test text" << endl;
             //set flag for saved file
