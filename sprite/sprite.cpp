@@ -7,6 +7,14 @@ Sprite::Sprite(int width, int height)
     frames.push_back(Frame{width, height});
 }
 
+int Sprite::getWidth() {
+    return this->width;
+}
+
+int Sprite::getHeight() {
+    return this->height;
+}
+
 Frame Sprite::getFrame(int frame) {
     return this->frames.at(frame);
 }

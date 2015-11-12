@@ -16,7 +16,12 @@ class Sprite
 public:
     Sprite() = delete;
     Sprite(int width, int height);
+
+    int getWidth();
+    int getHeight();
+
     Frame getFrame(int frame);
+
     QImage getImage(int frame, int layer);
 };
 

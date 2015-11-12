@@ -1,41 +1,45 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 
-#include <QWidget>
+#include <memory>
+
+#include <QGraphicsPixmapItem>
 #include <QGraphicsView>
 #include <QPoint>
 #include <QScrollArea>
-#include <QGraphicsPixmapItem>
 #include <QTextStream>
-#include <memory>
+#include <QWidget>
+
 #include "sprite/buffer.h"
 #include "sprite/sprite.h"
 
 #include "gui/spriteview.h"
 
+// TODO: Frame playback
 class Viewer : public QWidget
 {
     Q_OBJECT
 private:
-    int frame;
-    int layer;
+    int frameIndex;
+    int layerIndex;
+
+    double scale;
+
     std::shared_ptr<Buffer> buffer;
-    QGraphicsPixmapItem item;
+
+    QVBoxLayout layout;
+
     QGraphicsScene scene;
-    SpriteView view;
+    QGraphicsView view{&scene, this};
 
 public:
     explicit Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
-    void selectFrame(int frame);
-    void selectLayer(int layer);
+
     void updateView();
     void playback();
-    void mousePressEvent(QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-    //finds the location on the pixmap of the pixel clicked
-    QPoint pixelLocation(QMouseEvent*);
+
 signals:
+
 public slots:
     //void spriteUpdated(Sprite sprite);
 };
