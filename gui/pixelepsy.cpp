@@ -6,11 +6,14 @@
 #include "gui/viewer.h"
 
 #include <functional>
+#include <memory>
 
 #include <QGraphicsPixmapItem>
 #include <QMdiArea>
 #include <QMenuBar>
 #include <QHBoxLayout>
+#include <QColor>
+#include <QDebug>
 #include <QTextStream>
 
 
@@ -25,6 +28,7 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     this->setCentralWidget(mdiArea);
 
     fileSaved = false;
+    cancelFlag = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
 
@@ -47,20 +51,22 @@ Pixelepsy::~Pixelepsy()
  * Helper method which will send prompt when a new project would
  * occur before save operation
  */
-void Pixelepsy::newProject(){
+void Pixelepsy::newProject()
+{
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Exit", "Save changes to the document before closing?", QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel);
     if (reply == QMessageBox::Yes)
-    {
         on_actionSave_triggered();
-    }
-    else if (reply != QMessageBox::Cancel)
+    else if (reply == QMessageBox::No)
     {
         //TODO: Reset the sprite class and window
-    }
+    } else
+        cancelFlag = true;
 }
 
-void Pixelepsy::connectToolboxToMain(){
+
+void Pixelepsy::connectToolboxToMain()
+{
 
 }
 
@@ -73,7 +79,8 @@ void Pixelepsy::createFileActions() {
     createAction(this->File, this->actionSaveAs, "Save As", std::bind(&Pixelepsy::on_actionSave_As_triggered, this));
 }
 
-void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func) {
+void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func)
+{
     action = new QAction(text, menu);
     menu->addAction(action);
     connect(action, &QAction::triggered, this, func);
@@ -85,23 +92,45 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
 void Pixelepsy::on_actionOpen_triggered()
 {
 
-    QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
 
-    //as long as file can be opened, proceed
-    if (file.exists())
-    {
-        //create parameters to load from buffer
-        int width, height, frames;
+    if (!fileSaved)
+        newProject();
+    if(cancelFlag || fileSaved){
+        QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
 
-        file.open(QIODevice::ReadOnly);
-        QTextStream fileStream(&file);
+        //as long as file can be opened, proceed
+        if (file.exists())
+        {
+            //create parameters to load from buffer
+            int width;
+            int height;
+            int frames;
+
+            file.open(QIODevice::ReadOnly);
+            QTextStream fileStream(&file);
 
 
-
-
+            fileStream >> width >> height;
+            fileStream >> frames;
+            int red, green, blue, alpha;
+            Buffer* buffer = new Buffer(width, height);
+            for (int frame = 0; frame < frames; frame++) {
+                if (frame)
+                    buffer->current()->addFrame();
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        fileStream >> red >> green >> blue >> alpha;
+                        QRgb value = qRgba(red, green, blue, alpha);
+                        buffer->get(frame, 0).setPixel(x, y, value);
+                    }
+                }
+            }
+            Viewer* view = new Viewer(std::shared_ptr<Buffer>(buffer));
+            this->mdiArea->addSubWindow(view);
+            view->show();
+            view->updateView();
+        }
     }
-
-
 }
 
 /*
@@ -115,13 +144,11 @@ void Pixelepsy::on_actionSave_triggered()
         filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
-            QTextStream fileStream(&file);
-
-            fileStream << "test text" << endl;
+            QTextStream filestream(&file);
+            Buffer b(2, 3);
+            filestream << b.toString() << endl;
             //set flag for saved file
             // fileSaved = true;
-
-            fileStream << "test text" << '\n';
         }
     }
 }
@@ -172,9 +199,9 @@ void Pixelepsy::get_user_dimension()
                                                            "",
                                                            &userChoice1);
         // If user chooses to cancel, get out of the loop.
-        if (!userChoice1){
+        if (!userChoice1)
             break;
-        }
+
 
         width = horizontalInput.toInt(&convertState, 10);
 
@@ -198,9 +225,8 @@ void Pixelepsy::get_user_dimension()
                                                                "",
                                                                &userChoice2);
                 // If user chooses to cancel, get out of the loop.
-                if(!userChoice2){
+                if(!userChoice2)
                     break;
-                }
 
                 height = verticalInput.toInt(&convertState, 10);
 
@@ -226,9 +252,9 @@ void Pixelepsy::get_user_dimension()
     }
 }
 
-void Pixelepsy::add_viewer(int width, int height){
+void Pixelepsy::add_viewer(int width, int height)
+{
     Viewer* newView = new Viewer(std::make_shared<Buffer>(width, height));
     this->mdiArea->addSubWindow(newView);
     newView->show();
 }
-

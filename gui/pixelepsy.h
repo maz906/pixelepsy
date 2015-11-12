@@ -18,6 +18,7 @@
 #include <QPair>
 #include <QSaveFile>
 #include <QFileDialog>
+#include <QTextStream>
 #include <QImage>
 #include <QPixmap>
 
@@ -46,6 +47,7 @@ private:
     QInputDialog* newFileHorizontalInput;
     QSaveFile save;
     bool fileSaved;
+    bool cancelFlag;
     QMenu* File;
     QAction* actionNew;
     QAction* actionOpen;

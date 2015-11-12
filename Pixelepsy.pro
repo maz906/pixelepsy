@@ -23,7 +23,13 @@ SOURCES += main.cpp\
     gui/toolbox.cpp \
     tools/colorpicker.cpp \
     gui/canvas.cpp \
+<<<<<<< HEAD
     gui/spriteview.cpp
+=======
+    sprite/spriteiterator.cpp \
+    gui/spriteview.cpp \
+    tools/pencil.cpp
+>>>>>>> 3441241ab0cd94c3576fe8a8f5595c1c69c387dc
 
 HEADERS  += \
     gui/viewer.h \
@@ -35,7 +41,13 @@ HEADERS  += \
     tools/tool.h \
     tools/colorpicker.h \
     gui/canvas.h \
+<<<<<<< HEAD
     gui/spriteview.h
+=======
+    sprite/spriteiterator.h \
+    gui/spriteview.h \
+    tools/pencil.h
+>>>>>>> 3441241ab0cd94c3576fe8a8f5595c1c69c387dc
 
 FORMS    += pixelepsy.ui
 
