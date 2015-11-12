@@ -21,19 +21,6 @@ SpriteView::SpriteView(std::shared_ptr<Buffer> buffer, QWidget* parent)
     this->show();
 }
 
-void SpriteView::mouseMoveEvent(QMouseEvent* event)
-{
-    QPoint point = this->pixelLocation(event);
-    if (checkPoint(point))
-        this->points.push_back(point);
-}
-
-void SpriteView::mousePressEvent(QMouseEvent* event) {
-    this->points.clear();
-}
-
-void SpriteView::mouseReleaseEvent(QMouseEvent* event) {
-}
 
 QPoint SpriteView::pixelLocation(QMouseEvent* event) {
     return (this->mapToScene(event->pos())).toPoint();
@@ -45,14 +32,6 @@ bool SpriteView::checkPoint(QPoint point) {
     int width = this->buffer.get()->current().get()->getWidth();
     int height = this->buffer.get()->current().get()->getHeight();
     return ((x >= 0) && (y >= 0)) && ((x < width) && (y < height));
-}
-
-void SpriteView::selectFrame(int frame) {
-
-}
-
-void SpriteView::selectLayer(int layer) {
-
 }
 
 void SpriteView::updateView() {
@@ -68,3 +47,15 @@ void SpriteView::updateView() {
 void SpriteView::spriteModified() {
     updateView();
 }
+
+void SpriteView::closeEvent(QCloseEvent* event) {
+    (void)event;
+    if (!(this->buffer.use_count() - 1))
+    {
+        //save dialog
+    }
+}
+
+ void SpriteView::mousePressEvent(QMouseEvent *) {};
+ void SpriteView::mouseMoveEvent(QMouseEvent *) {};
+ void SpriteView::mouseReleaseEvent(QMouseEvent *) {};

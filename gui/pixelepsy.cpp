@@ -15,6 +15,7 @@
 #include <QColor>
 #include <QDebug>
 #include <QTextStream>
+#include <QShortcut>
 
 
 Pixelepsy::Pixelepsy(QWidget *parent)
@@ -25,21 +26,9 @@ Pixelepsy::Pixelepsy(QWidget *parent)
 {
     this->setMenuBar(bar);
     this->createFileActions();
-    //essential, do not remove
-    //this->ui->setupUi(this);
-    //QMdiaArea for subwindows
     this->setCentralWidget(mdiArea);
 
-    //example of adding a widget and layouts.
-    //QWidget* tools = new QWidget;
-    //tools->setGeometry(QRect(100, 100, 100, 100));
-    //tools->setWindowTitle("OMG");
-    //mdiArea->addSubWindow(tools);
-    //mdiArea->setLayout(new QHBoxLayout(mdiArea));
-    //mdiArea->layout()->addWidget(tools);
-    //mdiArea won't allow adding widgets. only subwindows.
-    //tools->show();
-    fileSaved = true;
+    fileSaved = false;
     cancelFlag = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
@@ -52,7 +41,11 @@ Pixelepsy::Pixelepsy(QWidget *parent)
 
 Pixelepsy::~Pixelepsy()
 {
+    //how to delete colorpicker?
+    mdiArea->closeAllSubWindows();
     delete ui;
+    delete mdiArea;
+    delete bar;
 }
 
 /*
@@ -81,15 +74,17 @@ void Pixelepsy::connectToolboxToMain()
 void Pixelepsy::createFileActions() {
     this->File = new QMenu(tr("&File"));
     this->menuBar()->addMenu(this->File);
-    createAction(this->File, this->actionNew, "New", std::bind(&Pixelepsy::on_actionNew_triggered, this));
-    createAction(this->File, this->actionOpen, "Open", std::bind(&Pixelepsy::on_actionOpen_triggered, this));
-    createAction(this->File, this->actionSave, "Save", std::bind(&Pixelepsy::on_actionSave_triggered, this));
-    createAction(this->File, this->actionSaveAs, "Save As", std::bind(&Pixelepsy::on_actionSave_As_triggered, this));
+    createAction(this->File, this->actionNew, "New", "Ctrl+N", std::bind(&Pixelepsy::on_actionNew_triggered, this));
+    createAction(this->File, this->actionOpen, "Open", "Ctrl+O",std::bind(&Pixelepsy::on_actionOpen_triggered, this));
+    createAction(this->File, this->actionSave, "Save", "Ctrl+S",std::bind(&Pixelepsy::on_actionSave_triggered, this));
+    createAction(this->File, this->actionSaveAs, "Save As", "Ctrl+Shift+S", std::bind(&Pixelepsy::on_actionSave_As_triggered, this));
 }
 
-void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func)
+void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, const QString& shortcut, std::function<void()> func)
 {
     action = new QAction(text, menu);
+    QShortcut* shtct = new QShortcut(QKeySequence(shortcut), this);
+    connect(shtct, &QShortcut::activated, this, func);
     menu->addAction(action);
     connect(action, &QAction::triggered, this, func);
 }

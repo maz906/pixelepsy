@@ -21,6 +21,9 @@ private:
 public:
     explicit Viewer(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
     void playback();
+    void mousePressEvent(QMouseEvent *) {};
+    void mouseMoveEvent(QMouseEvent *) {};
+    void mouseReleaseEvent(QMouseEvent *) {};
 signals:
 };
 

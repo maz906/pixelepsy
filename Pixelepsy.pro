@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     gui/toolbox.cpp \
     tools/colorpicker.cpp \
     gui/canvas.cpp \
-    sprite/spriteiterator.cpp \
     gui/spriteview.cpp \
     tools/pencil.cpp
 
