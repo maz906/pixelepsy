@@ -24,7 +24,7 @@ std::shared_ptr<Sprite> Buffer::current() {
 
 void Buffer::applyOperation(int frame, int layer, std::vector<QPoint> &points) {
     // Apply the operation
-    history.push_back(operation(*(history.back().get()), frame, layer, points));
+    history.push_back(std::make_shared<Sprite>(operation(*(history.back().get()), frame, layer, points)));
 }
 
 QString Buffer::toString() {
