@@ -18,14 +18,15 @@ class SpriteView : public QGraphicsView
 public:
     SpriteView(std::shared_ptr<Buffer> buffer, QWidget* parent = 0);
     SpriteView(QGraphicsScene* scene,  QWidget* parent = 0);
-    void mousePressEvent(QMouseEvent*);
-    void mouseMoveEvent(QMouseEvent*);
-    void mouseReleaseEvent(QMouseEvent*);
+    virtual void mousePressEvent(QMouseEvent*);
+    virtual void mouseMoveEvent(QMouseEvent*);
+    virtual void mouseReleaseEvent(QMouseEvent*);
     QPoint pixelLocation(QMouseEvent*);
     bool checkPoint(QPoint);
     void selectFrame(int frame);
     void selectLayer(int layer);
     void updateView();
+    void closeEvent(QCloseEvent *);
 
 private:
     std::shared_ptr<Buffer> buffer;
