@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     gui/canvas.cpp \
     sprite/spriteiterator.cpp \
     gui/spriteview.cpp \
-    tools/pencil.cpp
+    tools/pencil.cpp \
+    spritetest.cpp
 
 HEADERS  += \
     gui/viewer.h \
@@ -39,7 +40,8 @@ HEADERS  += \
     gui/canvas.h \
     sprite/spriteiterator.h \
     gui/spriteview.h \
-    tools/pencil.h
+    tools/pencil.h \
+    spritetest.h
 
 FORMS    += pixelepsy.ui
 
