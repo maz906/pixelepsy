@@ -15,7 +15,7 @@ class Tool : public QLayoutItem
 {
 
 public:
-    typedef std::function<Sprite(const Sprite, std::vector<QPoint>)> Operation;
+    typedef std::function<shared_ptr<Sprite>(const Sprite, std::vector<QPoint>)> Operation;
 
     Tool();
     //this should be specialized to an Operation when colorChanged
