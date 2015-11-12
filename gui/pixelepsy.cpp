@@ -58,23 +58,22 @@ Pixelepsy::~Pixelepsy()
  * Helper method which will send prompt when a new project would
  * occur before save operation
  */
-void Pixelepsy::newProject(){
+void Pixelepsy::newProject()
+{
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Exit", "Save changes to the document before closing?", QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel);
     if (reply == QMessageBox::Yes)
-    {
         on_actionSave_triggered();
-    }
     else if (reply == QMessageBox::No)
     {
         //TODO: Reset the sprite class and window
-    } else {
+    } else
         cancelFlag = true;
-    }
 }
 
 
-void Pixelepsy::connectToolboxToMain(){
+void Pixelepsy::connectToolboxToMain()
+{
 
 }
 
@@ -87,7 +86,8 @@ void Pixelepsy::createFileActions() {
     createAction(this->File, this->actionSaveAs, "Save As", std::bind(&Pixelepsy::on_actionSave_As_triggered, this));
 }
 
-void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func) {
+void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, std::function<void()> func)
+{
     action = new QAction(text, menu);
     menu->addAction(action);
     connect(action, &QAction::triggered, this, func);
@@ -260,7 +260,8 @@ void Pixelepsy::get_user_dimension()
     }
 }
 
-void Pixelepsy::add_viewer(int width, int height){
+void Pixelepsy::add_viewer(int width, int height)
+{
     Viewer* newView = new Viewer(std::make_shared<Buffer>(width, height));
     this->mdiArea->addSubWindow(newView);
     newView->show();
