@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <QImage>
+#include <QRect>
 
 Frame::Frame(int width, int height)
     : width(width)
@@ -22,4 +23,15 @@ std::vector<std::shared_ptr<QImage>>::const_iterator Frame::getLayersBegin() {
 
 std::vector<std::shared_ptr<QImage>>::const_iterator  Frame::getLayersEnd() {
     return this->layers.cend();
+}
+
+Frame Frame::clone() {
+    Frame frame(width, height);
+
+    for (auto layers = getLayersBegin(); layers != getLayersEnd(); layers++) {
+        QRect nullRectangle;
+        frame.layers.push_back(std::make_shared<QImage>((*layers)->copy(nullRectangle)));
+    }
+
+    return frame;
 }

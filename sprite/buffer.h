@@ -32,10 +32,10 @@ public:
     QImage get(int frame, int layer);
     std::shared_ptr<Sprite> current();
 
-    void applyOperation(std::vector<QPoint> &points);
+    void applyOperation(int frame, int layer, std::vector<QPoint> &points);
 
 signals:
-    void spriteModified(Sprite sprite);
+    void spriteModified();
 };
 
 #endif // BUFFER_H

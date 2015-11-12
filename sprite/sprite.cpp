@@ -22,3 +22,7 @@ Frame Sprite::getFrame(int frame) {
 QImage Sprite::getImage(int frame, int layer) {
     return *(this->getFrame(frame).getLayer(layer).get());
 }
+
+void Sprite::addFrame() {
+    frames.push_back(frames.back().clone());
+}
