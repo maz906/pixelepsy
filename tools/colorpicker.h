@@ -13,23 +13,22 @@
 class ColorPicker : public QWidget
 {
     Q_OBJECT
+
     QPushButton fgButton;
     QPushButton bgButton;
 
-    QString stylesheet;
-    QString color;
+    QVBoxLayout layout;
 
     QColor fgColor;
     QColor bgColor;
-    QVBoxLayout layout;
-    QPalette pal;
 public:
     explicit ColorPicker(QWidget *parent = 0);
-    ~ColorPicker();
+
     QColor getForegroundColor();
     QColor getBackgroundColor();
-    void updateFGColors();
-    void updateBGColors();
+
+    void updateFGColor(QColor color);
+    void updateBGColor(QColor color);
 
 signals:
     void colorChanged(QColor fgColor, QColor bgColor);
