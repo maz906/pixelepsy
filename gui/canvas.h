@@ -17,7 +17,12 @@ class Canvas : public SpriteView
 private:
 public:
     explicit Canvas(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
+    void mouseMoveEvent(QMouseEvent*);
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
 signals:
+    void onClicked(std::vector<QPoint>);
+    void onPressed(std::vector<QPoint>);
 };
 
 #endif // CANVAS_H
