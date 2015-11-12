@@ -9,28 +9,14 @@
 
 #include "sprite/sprite.h"
 #include "sprite/buffer.h"
+#include "gui/spriteview.h"
 
-class Canvas : public QGraphicsView
+class Canvas : public SpriteView
 {
     Q_OBJECT
 private:
-    std::shared_ptr<Buffer> buffer;
-    std::vector<QPoint> points;
-    QVBoxLayout layout;
-    QGraphicsScene scene;
-    int frameIndex;
-    int layerIndex;
-    double scala;
 public:
     explicit Canvas(std::shared_ptr<Buffer> buffer, QWidget *parent = 0);
-    void selectFrame(int frame);
-    void selectLayer(int layer);
-    void updateView();
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    QPoint pixelLocation(QMouseEvent* event);
-    bool checkPoint(QPoint);
 signals:
     void onClicked(std::vector<QPoint> points);
     void onPressed(std::vector<QPoint> points);
