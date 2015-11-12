@@ -99,8 +99,6 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
  */
 void Pixelepsy::on_actionOpen_triggered()
 {
-
-
     if (!fileSaved)
         newProject();
     if(cancelFlag || fileSaved){
@@ -134,6 +132,7 @@ void Pixelepsy::on_actionOpen_triggered()
                 }
             }
             Viewer* view = new Viewer(std::shared_ptr<Buffer>(buffer));
+//            Viewer* view = new Viewer(std::make_shared<Buffer>(width, height));
             this->mdiArea->addSubWindow(view);
             view->show();
             view->updateView();
@@ -166,16 +165,16 @@ void Pixelepsy::on_actionSave_triggered()
  */
 void Pixelepsy::on_actionSave_As_triggered()
 {
-        // do file saving process.
-        filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
-        QFile file(filename);
-        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
-            QTextStream filestream(&file);
-            filestream << "test text" << endl;
-            //set flag for saved file
-            // fileSaved = true;
-        }
-
+    // do file saving process.
+    filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
+    QFile file(filename);
+    if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+        QTextStream filestream(&file);
+        Buffer b(2, 3);
+        filestream << b.toString() << endl;
+        //set flag for saved file
+        // fileSaved = true;
+    }
 }
 
 /*
