@@ -39,11 +39,33 @@ Pixelepsy::Pixelepsy(QWidget *parent)
     fileSaved = false;
     ColorPicker* c = new ColorPicker;
     mdiArea->addSubWindow(c);
+
+//    fileSaved = false;
+//    ColorPicker* c = new ColorPicker;
+//    mdiArea->addSubWindow(c);
+
 }
 
 Pixelepsy::~Pixelepsy()
 {
     delete ui;
+}
+
+/*
+ * Helper method which will send prompt when a new project would
+ * occur before save operation
+ */
+void Pixelepsy::newProject(){
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Exit", "Save changes to the document before closing?", QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel);
+    if (reply == QMessageBox::Yes)
+    {
+        on_actionSave_triggered();
+    }
+    else if (reply != QMessageBox::Cancel)
+    {
+        //TODO: Reset the sprite class and window
+    }
 }
 
 void Pixelepsy::connectToolboxToMain(){
@@ -70,8 +92,23 @@ void Pixelepsy::createAction(QMenu* menu, QAction* action, const QString& text, 
  */
 void Pixelepsy::on_actionOpen_triggered()
 {
-    // Opens new file - Set to automatically go to root
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Test"), "/", tr(" files (*.file)"));
+
+    QFile file(QFileDialog::getOpenFileName(this, "Select a file to open...", "../", tr("Sprite Projects (*.ssp)")));
+
+    //as long as file can be opened, proceed
+    if (file.exists())
+    {
+        //create parameters to load from buffer
+        int width, height, frames;
+
+        file.open(QIODevice::ReadOnly);
+        QTextStream fileStream(&file);
+
+
+
+
+    }
+
 
 }
 
@@ -86,8 +123,13 @@ void Pixelepsy::on_actionSave_triggered()
         filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
-            QTextStream filestream(&file);
-            filestream << "test text" << '\n';
+            QTextStream fileStream(&file);
+
+            fileStream << "test text" << endl;
+            //set flag for saved file
+            // fileSaved = true;
+
+            fileStream << "test text" << '\n';
         }
     }
 }
@@ -97,6 +139,15 @@ void Pixelepsy::on_actionSave_triggered()
  */
 void Pixelepsy::on_actionSave_As_triggered()
 {
+        // do file saving process.
+        filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
+        QFile file(filename);
+        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+            QTextStream filestream(&file);
+            filestream << "test text" << endl;
+            //set flag for saved file
+            // fileSaved = true;
+        }
 
 }
 
@@ -123,8 +174,8 @@ void Pixelepsy::get_user_dimension()
     while (true) {
         // Ask user for the input.
         QString horizontalInput = QInputDialog::getText(this,
-                                                           tr("Horizontal Dimension test"),
-                                                           tr("Your dimension here"),
+                                                           tr("New File"),
+                                                           tr("Please enter your width dimension."),
                                                            QLineEdit::Normal,
                                                            "",
                                                            &userChoice1);
@@ -140,7 +191,7 @@ void Pixelepsy::get_user_dimension()
 
             //TODO Change message box text.
             QMessageBox invalidInputPrompt;
-            invalidInputPrompt.setText("wrong input @ horizontal");
+            invalidInputPrompt.setText("You entered an incorrect input. Please try again.");
             invalidInputPrompt.exec();
 
             continue;
@@ -149,8 +200,8 @@ void Pixelepsy::get_user_dimension()
             // Obtain vertical dimension from user
             while (true) {
                 QString verticalInput = QInputDialog::getText(this,
-                                                               tr("Vertical Dimension test"),
-                                                               tr("Your dimension here"),
+                                                               tr("New File"),
+                                                               tr("Please enter your height dimension."),
                                                                QLineEdit::Normal,
                                                                "",
                                                                &userChoice2);
@@ -166,7 +217,7 @@ void Pixelepsy::get_user_dimension()
 
                     //TODO: Change message box text.
                     QMessageBox invalidInputPrompt;
-                    invalidInputPrompt.setText("wrong input @ vertical");
+                    invalidInputPrompt.setText("You entered an incorrect input. Please try again.");
                     invalidInputPrompt.exec();
 
                     continue;
