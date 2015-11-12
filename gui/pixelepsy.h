@@ -18,6 +18,7 @@
 #include <QPair>
 #include <QSaveFile>
 #include <QFileDialog>
+#include <QTextStream>
 #include <QImage>
 #include <QPixmap>
 

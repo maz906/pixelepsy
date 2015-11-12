@@ -11,6 +11,8 @@
 #include <QMdiArea>
 #include <QMenuBar>
 #include <QHBoxLayout>
+#include <QColor>
+#include <QDebug>
 #include <QTextStream>
 
 
@@ -133,13 +135,11 @@ void Pixelepsy::on_actionSave_triggered()
         filename = fileDialog->getSaveFileName(this, tr("Save Sprite"), "untitled.ssp", tr("Sprites (*.ssp)"));
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
-            QTextStream fileStream(&file);
-
-            fileStream << "test text" << endl;
+            QTextStream filestream(&file);
+            Buffer b(2, 3);
+            filestream << b.toString() << endl;
             //set flag for saved file
             // fileSaved = true;
-
-            fileStream << "test text" << '\n';
         }
     }
 }
@@ -249,4 +249,3 @@ void Pixelepsy::add_viewer(int width, int height){
     this->mdiArea->addSubWindow(newView);
     newView->show();
 }
-

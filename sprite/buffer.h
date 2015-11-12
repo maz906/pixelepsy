@@ -32,6 +32,7 @@ public:
     QImage get(int frame, int layer);
     std::shared_ptr<Sprite> current();
 
+    QString toString();
     void applyOperation(int frame, int layer, std::vector<QPoint> &points);
 
 signals:
