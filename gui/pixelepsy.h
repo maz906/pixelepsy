@@ -34,7 +34,7 @@ public:
     explicit Pixelepsy(QWidget *parent = 0);
     ~Pixelepsy();
     void createFileActions();
-    void createAction(QMenu*, QAction*, const QString&, std::function<void()> func);
+    void createAction(QMenu*, QAction*, const QString&, const QString&, std::function<void()> func);
     void connectToolboxToMain();
     void newProject();
 private:
@@ -43,6 +43,9 @@ private:
     QFileDialog* fileDialog;
     QString filename;
     QShortcut* newFileShortcut;
+    QShortcut* openFileShortcut;
+    QShortcut* saveFileShortcut;
+    QShortcut* saveAsShortcut;
     QInputDialog* newFileVerticalInput;
     QInputDialog* newFileHorizontalInput;
     QSaveFile save;
