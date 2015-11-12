@@ -1,0 +1,52 @@
+Style Guide
+
+
+Indentation
+
+	4 spaces are used for indentation
+
+Declaring Variables
+
+	Declare each variable on a separate line
+
+	Single character variable names are only okay for counters and temporaries, where the purpose of the variable is obvious
+
+	Avoid short or meaningless names (e.g. "a", "rbarr", "nughdeget")
+
+	Variables and functions start with a lower-case letter. Each consecutive word in a variable's name starts with an upper-case letter
+
+Whitespace
+
+	Use blank lines to group statements together where suited
+
+	Always use only one blank line
+
+	Always use a single space after a keyword and before a curly brace
+
+	No space after a cast
+
+	Do not put multiple statements on one line
+		By extension, use a new line for the body of a control flow statement
+
+Braces
+
+	Use attached braces: The opening brace goes on the same line as the start of the statement. If the closing brace is followed by another keyword, it goes into the same line as well
+
+	Exception: Function implementations and class declarations always have the left brace on the start of a line:
+
+	Exception 1: Use braces also if the parent statement covers several lines / wraps
+
+Parentheses
+
+	Use parentheses to group expressions
+
+Line breaks
+
+	Keep lines shorter than 100 characters; wrap if necessary
+		Comment/apidoc lines should be kept below 80 columns
+	
+	Commas go at the end of wrapped lines; operators start at the beginning of the new lines. An operator at the end of the line is easy to miss if the editor is too narrow.
+
+Genereal Exception
+	
+	When strictly following a rule makes your code look bad, feel free to break it. 
