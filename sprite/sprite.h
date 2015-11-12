@@ -19,6 +19,7 @@ public:
 
     int getWidth();
     int getHeight();
+    std::vector<Frame> getFrames();
 
     Frame getFrame(int frame);
 

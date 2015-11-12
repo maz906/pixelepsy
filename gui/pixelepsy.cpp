@@ -11,6 +11,8 @@
 #include <QMdiArea>
 #include <QMenuBar>
 #include <QHBoxLayout>
+#include <QColor>
+#include <QDebug>
 
 
 Pixelepsy::Pixelepsy(QWidget *parent)
@@ -86,7 +88,8 @@ void Pixelepsy::on_actionSave_triggered()
         QFile file(filename);
         if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream filestream(&file);
-            filestream << "test text" << endl;
+            Buffer b(2, 3);
+            filestream << b.toString() << endl;
         }
     }
 }
@@ -187,4 +190,3 @@ void Pixelepsy::add_viewer(int width, int height){
     this->mdiArea->addSubWindow(newView);
     newView->show();
 }
-

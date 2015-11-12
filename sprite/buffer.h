@@ -33,7 +33,7 @@ public:
     std::shared_ptr<Sprite> current();
 
     void applyOperation(std::vector<QPoint> &points);
-
+    QString toString();
 signals:
     void spriteModified(Sprite sprite);
 };
